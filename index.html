@@ -1,489 +1,773 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>Naro studio</title>
-
-  <!-- Comfortaa & M PLUS 1p フォント追加 -->
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=M+PLUS+1p&display=swap" rel="stylesheet">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naro studio | Career Portfolio Sample</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=M+PLUS+1p:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f8f8f8;
+      --surface: rgba(255,255,255,0.82);
+      --surface-strong: #ffffff;
+      --text: #2f3443;
+      --muted: #6f7788;
+      --line: #dfe3ea;
+      --line-strong: #cfd5df;
+      --shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 14px 30px rgba(0, 0, 0, 0.1);
+      --accent-blue: #4FC3F7;
+      --accent-yellow: #ffb31a;
+      --accent-soft: #eef4fb;
+      --featured: linear-gradient(135deg, #9fe1ef 0%, #e8c8e9 100%);
+      --featured-2: linear-gradient(135deg, #78e1b2 0%, #79c7f5 100%);
+      --featured-3: linear-gradient(135deg, #f6b9ba 0%, #f0b06c 100%);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'M PLUS 1p', sans-serif;
-      background: #ffffff;
       margin: 0;
-      padding: 40px 0 80px;
+      font-family: 'M PLUS 1p', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(159,225,239,0.20), transparent 28%),
+        radial-gradient(circle at top right, rgba(232,200,233,0.22), transparent 26%),
+        var(--bg);
+      color: var(--text);
+      padding: 28px 20px 56px;
+    }
+
+    a { color: inherit; }
+
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 42px 40px 34px;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(159,225,239,0.12), rgba(232,200,233,0.10));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 36px;
+      padding: 8px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-family: 'Comfortaa', cursive;
+      font-size: clamp(42px, 6vw, 64px);
+      line-height: 1.05;
+      color: #222a3b;
+      letter-spacing: 0.02em;
+    }
+
+    .lead {
+      margin: 0;
+      max-width: 700px;
+      color: #4f5668;
+      line-height: 1.95;
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(0,0,0,0.12);
+    }
+
+    .btn-primary {
+      background: var(--accent-blue);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero-summary {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+
+    .mini-card p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .metric {
+      background: rgba(255,255,255,0.88);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 10px;
       text-align: center;
     }
-    h1 {
-      font-family: 'Comfortaa', cursive;
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
     }
-    .caption {
-      margin-top: 8px;
+
+    .metric span {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 28px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    .section-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
       font-size: 14px;
-      color: #555;
+      line-height: 1.8;
     }
-    hr {
-      border: none;
-      height: 3px;
-      width: 500px;
-      background: #88cc7a;
-      margin: 20px auto;
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-    .tags {
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--line-strong);
+      font-size: 14px;
+      color: #495166;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .featured-card {
+      background: var(--surface-strong);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      border: 1px solid rgba(223,227,234,0.75);
+    }
+
+    .featured-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .featured-visual {
+      aspect-ratio: 16 / 10;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.95);
+      font-size: 54px;
+      font-weight: 700;
+    }
+
+    .featured-visual.featured-a { background: var(--featured); }
+    .featured-visual.featured-b { background: var(--featured-2); }
+    .featured-visual.featured-c { background: var(--featured-3); }
+
+    .play-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      color: #25304a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      font-size: 22px;
+    }
+
+    .play-badge::before {
+      content: '▶';
+      transform: translateX(1px);
+    }
+
+    .featured-body {
+      padding: 18px 18px 20px;
+      text-align: left;
+    }
+
+    .featured-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
       margin-bottom: 10px;
     }
-    .tag-btn {
-      display: inline-block;
-      padding: 8px 12px;
-      margin: 5px;
-      border: 1px solid #333;
-      border-radius: 4px;
-      cursor: pointer;
-      user-select: none;
+
+    .meta-pill {
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #49607c;
     }
-    .genre-btn {
-      border-width: 2px;
-      font-weight: bold;
+
+    .featured-body h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
     }
-    .tag-btn.active {
-      background: #333;
-      color: #fff;
+
+    .featured-body p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 13px;
     }
-    .grid {
+
+    .detail-list {
       display: grid;
-      grid-template-columns: repeat(5, 150px);
-      gap: 15px;
-      justify-content: center;
-      margin: 20px auto;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #495166;
+      font-size: 13px;
+      line-height: 1.7;
     }
-    .track {
-      background: #fff;
-      border: none;
-      border-radius: 8px;
-      width: 150px;
-      height: 150px;
-      display: flex;
-      justify-content: center;
+
+    .detail-list strong {
+      color: var(--text);
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
       align-items: center;
-      cursor: pointer;
-      position: relative;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      transition: box-shadow 0.3s ease;
-    }
-    .track:hover {
-      background: #eee;
-    }
-    .track.playing {
-      background: #ffffcc;
-    }
-    .playing-animation {
-      display: none;
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #99ff99;
-      animation: blink 1s infinite;
-    }
-    @keyframes blink {
-      0%, 50%, 100% { opacity: 1; }
-      25%, 75% { opacity: 0; }
-    }
-    .duration {
-      display: block;
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 12px;
-      color: #999;
-    }
-    audio { display: none; }
-
-    .link-buttons {
-      display: flex;
       justify-content: center;
-      gap: 10px;
-      position: fixed;
-      bottom: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: auto; /* 中央寄せ修正 */
+      background: var(--accent-soft);
+      color: #4e6480;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
-    .link-buttons a {
-      display: inline-block;
-      padding: 8px 16px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      color: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .link-buttons a.commission { background: #4FC3F7; }
-    .link-buttons a.commission:hover { background: #29B6F6; }
-    .link-buttons a.main-site { background: #ffb31a; }
-    .link-buttons a.main-site:hover { background: orange; }
 
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
+    .step-card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .catalog-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .catalog-thumb {
       width: 100%;
-      background: #88cc7a;
-      color: #fff;
-      padding: 10px 0;
-      font-size: 14px;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.96);
+      font-size: 44px;
+      background: linear-gradient(135deg, #8fd7e8 0%, #98f0d4 100%);
+    }
+
+    .catalog-thumb::before {
+      content: '♪';
+    }
+
+    .catalog-card h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .catalog-card p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .catalog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .catalog-tags span {
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #596174;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .about-card {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+    }
+
+    .about-card h3 {
+      margin: 0 0 12px;
+      font-size: 17px;
+    }
+
+    .about-card p,
+    .about-card li {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 13px;
+    }
+
+    .about-card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 18px 22px;
+      border-radius: 22px;
+      background: rgba(223, 227, 234, 0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.45);
+      color: #5d6678;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-grid { grid-template-columns: 1fr; }
+      .workflow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .catalog-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      body { padding: 16px 12px 32px; }
+      .hero,
+      .section { padding: 22px 18px; border-radius: 24px; }
+      .mini-metrics { grid-template-columns: 1fr; }
+      .catalog-card { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 42px; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .workflow { grid-template-columns: 1fr; }
+      .chip { font-size: 13px; }
+      .section-header h2 { font-size: 22px; }
     }
   </style>
-  
 </head>
 <body>
-<h1>Naro studio</h1>
-<p class="caption">
-  なろが制作した楽曲を視聴できるサイトです。
-   <br>
-  タグ検索機能もございますので、ご依頼時の参考になれば幸いです。
-</p>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">Music Portfolio / Career Sample</div>
+          <h1>Naro studio</h1>
+          <p class="lead">
+            作曲・BGM制作・ジングル制作を中心とした就職活動向けポートフォリオ例です。<br>
+            楽曲を並べるだけでなく、用途・制作意図・担当範囲・制作プロセスをセットで見せる構成にして、
+            「どういう案件に対応できるか」が伝わる形を意識しています。
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#featured">代表作品を見る</a>
+            <a class="btn btn-secondary" href="#about">プロフィールを見る</a>
+          </div>
+        </div>
 
-  <hr style="border: none; height: 3px; width: 500px; background: #88cc7a; margin: 20px auto;">
+        <div class="hero-summary">
+          <div class="mini-card">
+            <h3>目指す見せ方</h3>
+            <p>
+              企業向けには「楽しいUI」だけでなく、案件理解・設計力・再現力・コミュニケーション力まで見える構成が有効です。
+            </p>
+          </div>
+          <div class="mini-metrics">
+            <div class="metric">
+              <strong>3</strong>
+              <span>Featured Works</span>
+            </div>
+            <div class="metric">
+              <strong>4</strong>
+              <span>Workflow Steps</span>
+            </div>
+            <div class="metric">
+              <strong>6+</strong>
+              <span>Playable Samples</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-<div class="tags">
-    <!-- 1段目: ジャンル -->
-    <div class="tag-btn genre-btn" onclick="toggleTag(this)">ジングル</div>
-    <div class="tag-btn genre-btn" onclick="toggleTag(this)">BGM</div>
-    <div class="tag-btn genre-btn" onclick="toggleTag(this)">楽曲</div>
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>対応領域</h2>
+          <p>採用側が最初に把握しやすいよう、得意分野を先に見せる例です。</p>
+        </div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">BGM制作</span>
+        <span class="chip">ジングル</span>
+        <span class="chip">ポップス</span>
+        <span class="chip">配信向け楽曲</span>
+        <span class="chip">世界観設計</span>
+        <span class="chip">明るい / 可愛い / 優しい</span>
+        <span class="chip">和風 / 幻想的 / 物語調</span>
+      </div>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="section-header">
+        <div>
+          <h2>代表作品</h2>
+          <p>まずは企業に見てほしい3作品を先頭に置き、用途・制作意図・担当範囲を明記する構成です。</p>
+        </div>
+      </div>
+
+      <div class="featured-grid">
+        <article class="featured-card">
+          <div class="featured-visual featured-a">
+            <span class="play-badge"></span>
+          </div>
+          <div class="featured-body">
+            <div class="featured-meta">
+              <span class="meta-pill">BGM</span>
+              <span class="meta-pill">配信向け</span>
+              <span class="meta-pill">明るい・優しい</span>
+            </div>
+            <h3>潮に咲く</h3>
+            <p>
+              雑談配信や導入シーンを想定した、やわらかく親しみのある空気感のBGM。和風と自然モチーフを穏やかに混ぜ、長時間再生しても疲れにくい質感を意識しました。
+            </p>
+            <ul class="detail-list">
+              <li><strong>用途：</strong>配信・動画・待機画面向けBGM</li>
+              <li><strong>担当：</strong>作曲 / 編曲 / ミックス</li>
+              <li><strong>工夫：</strong>ループ耐性、声とぶつからない帯域設計、印象に残る導入</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-visual featured-b">
+            <span class="play-badge"></span>
+          </div>
+          <div class="featured-body">
+            <div class="featured-meta">
+              <span class="meta-pill">ジングル</span>
+              <span class="meta-pill">短尺</span>
+              <span class="meta-pill">キャッチー</span>
+            </div>
+            <h3>モズとフルート</h3>
+            <p>
+              数秒で雰囲気を切り替える用途を想定した短尺ジングル。かわいさと幻想感を両立し、配信の転換点やコーナー開始の合図として機能する設計を意識しました。
+            </p>
+            <ul class="detail-list">
+              <li><strong>用途：</strong>配信コーナー切替 / 動画トランジション</li>
+              <li><strong>担当：</strong>作曲 / アレンジ</li>
+              <li><strong>工夫：</strong>短時間での印象形成、アイキャッチ性、余韻処理</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <div class="featured-visual featured-c">
+            <span class="play-badge"></span>
+          </div>
+          <div class="featured-body">
+            <div class="featured-meta">
+              <span class="meta-pill">楽曲</span>
+              <span class="meta-pill">ポップ</span>
+              <span class="meta-pill">キャラクター性</span>
+            </div>
+            <h3>campana</h3>
+            <p>
+              キャラクターの明るさや前向きさを押し出すことを想定したポップ楽曲。メロディの親しみやすさを優先しつつ、展開で飽きが出ないようセクションごとに質感変化を入れています。
+            </p>
+            <ul class="detail-list">
+              <li><strong>用途：</strong>活動テーマ曲 / MV / 配信用オリジナル曲</li>
+              <li><strong>担当：</strong>作曲 / 編曲 / ミックス</li>
+              <li><strong>工夫：</strong>歌いやすい音域設計、覚えやすいサビ、展開差</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>制作プロセス</h2>
+          <p>実技試験や面接で話しやすくするため、作り方を構造化して見せる例です。</p>
+        </div>
+      </div>
+      <div class="workflow">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>要件整理</h3>
+          <p>用途、尺、ターゲット、感情、参考作品、配信か映像かなどを整理して方向性を定めます。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>モチーフ設計</h3>
+          <p>旋律、コード感、楽器編成を先に決め、世界観に対して必要な音の役割を切り分けます。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>アレンジ・調整</h3>
+          <p>ループ性、声との共存、印象の持続を確認しながら編曲と質感設計を進めます。</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>納品視点で仕上げ</h3>
+          <p>尺調整、書き出し形式、用途別バリエーションなど、実務で使いやすい形を意識してまとめます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <div>
+          <h2>再生サンプル一覧</h2>
+          <p>現行サイトの「ボタンで楽しく聴ける良さ」を活かしつつ、用途説明も添える形の例です。</p>
+        </div>
+      </div>
+
+      <div class="catalog-grid">
+        <article class="catalog-card">
+          <div class="catalog-thumb"></div>
+          <div>
+            <h3>オーロラ紀行</h3>
+            <p>幻想的で静かな空気感を重視したBGM。シーン演出や読み物系コンテンツ向けを想定。</p>
+            <div class="catalog-tags">
+              <span>幻想的</span><span>自然</span><span>優しい</span><span>BGM</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog-card">
+          <div class="catalog-thumb"></div>
+          <div>
+            <h3>Howl Spice</h3>
+            <p>テンション感を上げる短尺ジングル。配信中の切り替えや見出し用に使いやすい構成。</p>
+            <div class="catalog-tags">
+              <span>ジングル</span><span>明るい</span><span>カッコいい</span><span>ポップ</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog-card">
+          <div class="catalog-thumb"></div>
+          <div>
+            <h3>再開と終焉</h3>
+            <p>物語性と緊張感を意識したBGM。シーン遷移やドラマティックな展開向けの音作り。</p>
+            <div class="catalog-tags">
+              <span>BGM</span><span>切ない</span><span>物語調</span><span>幻想的</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="catalog-card">
+          <div class="catalog-thumb"></div>
+          <div>
+            <h3>おさんぽ日和</h3>
+            <p>かわいらしさと軽快さを前面に出した作品。日常系、雑談、明るい配信向け。</p>
+            <div class="catalog-tags">
+              <span>楽曲</span><span>可愛い</span><span>明るい</span><span>リラックス</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-header">
+        <div>
+          <h2>プロフィール / 採用向け補足</h2>
+          <p>音源だけでは伝わりにくい「人となり」と「仕事の進め方」を添える例です。</p>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>自己紹介</h3>
+          <p>
+            デザイン系の学びを背景に、音だけでなく見せ方・世界観・受け手の印象まで含めて設計することを意識しています。
+            明るく可愛い質感の楽曲やBGMを得意としつつ、和風・幻想的・物語調の表現にも対応可能です。
+          </p>
+        </div>
+        <div class="about-card">
+          <h3>面接で話せる要素</h3>
+          <ul>
+            <li>依頼意図をどう読み取り、音に落とし込んだか</li>
+            <li>短尺・長尺で設計をどう変えているか</li>
+            <li>声や映像と共存させるための工夫</li>
+            <li>修正対応ややり取りで意識している点</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2025 Naro studio. Career Portfolio Sample
+    </div>
   </div>
-    
-  <div class="tags">
-    <!-- 2段目: 音楽イメージ -->
-    <div class="tag-btn" onclick="toggleTag(this)">可愛い</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">明るい</div>
-    <div class="tag-btn" onclick="toggleTag(this)">楽しい</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">優しい</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">切ない</div>
-    <div class="tag-btn" onclick="toggleTag(this)">カッコいい</div>
-    <div class="tag-btn" onclick="toggleTag(this)">ピアノ</div>
-    <div class="tag-btn" onclick="toggleTag(this)">ポップ</div>
-    <br>
-    <div class="tag-btn" onclick="toggleTag(this)">和風</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">自然</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">不穏</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">幻想的</div>
-    <div class="tag-btn" onclick="toggleTag(this)">不思議</div>    
-    <div class="tag-btn" onclick="toggleTag(this)">アンニュイ</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">リラックス</div> 
-    <div class="tag-btn" onclick="toggleTag(this)">物語調</div> 
-  </div>
-
-  <div class="grid" id="trackGrid">
-    <!-- 曲1-20 -->
-    <!-- 各data-tagsを適切に変更してください -->
-<div class="grid" id="trackGrid">
-  <div class="track" data-tags="明るい 優しい 可愛い 自然 和風 幻想的 ジングル リラックス" onclick="playTrack('hamupi-')">潮に咲く
-     <span class="playing-animation"></span>
-    <span class="duration"></span>
-    <audio id="hamupi-" src="music/hamupi-.mp3"></audio>
-  </div>
-
-   <div class="track" data-tags="ジングル カッコいい 楽しい" onclick="playTrack('ddd')">ラジオマン
-     <span class="playing-animation"></span>
-     <span class="duration"></span>
-     <audio id="ddd" src="music/ddd.mp3"></audio>
-  </div>
-
-  <div class="track" data-tags="明るい 楽しい 可愛い ポップ ジングル" onclick="playTrack('jikiru')">EVOLUTION！
- <span class="playing-animation"></span>   
-     <span class="duration"></span>
-    <audio id="jikiru" src="music/jikiru.mp3"></audio>
-  </div>  
-  
- <div class="track" data-tags="ジングル 明るい 可愛い ピアノ ポップ リラックス 優しい" onclick="playTrack('sunatumino')">つみあげサンド
-     <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="sunatumino" src="music/sunatumino.mp3"></audio>
-  </div>  
-  
-  <div class="track" data-tags="優しい 切ない 自然 和風 ジングル ピアノ 物語調" onclick="playTrack('hirata')">邂逅
- <span class="playing-animation"></span>   
-     <span class="duration"></span>
-    <audio id="hirata" src="music/hirata.mp3"></audio>
-  </div>
-  
-  <div class="track" data-tags="幻想的 自然 優しい" onclick="playTrack('kirakira_snow')">オーロラ紀行
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="kirakira_snow" src="music/kirakira_snow.mp3"></audio>
-  </div>
-
-  <div class="track" data-tags="ジングル 優しい ピアノ 幻想的  リラックス 不思議" onclick="playTrack('piano_flute')">モズとフルート
-     <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="piano_flute" src="music/piano_flute.mp3"></audio>
-  </div>
-
-  <div class="track" data-tags="ジングル 明るい 楽しい カッコいい ポップ" onclick="playTrack('sakuya')">Howl Spice
- <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="sakuya" src="music/sakuya.mp3"></audio>
-  </div>
-
-  <div class="track" data-tags="ジングル 明るい 楽しい 可愛い ポップ" onclick="playTrack('juna')">サイバー×
-      <br>
-    キャンディ
- <span class="playing-animation"></span>  
- <span class="duration"></span>    
-    <audio id="juna" src="music/juna.mp3"></audio>
-  </div>  
-  
-  <div class="track" data-tags="ジングル 明るい 優しい 可愛い 和風 自然" onclick="playTrack('suiren')">水悠歌
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="suiren" src="music/suiren.mp3"></audio>
-  </div>
-
-
-  <div class="track" data-tags="ジングル 切ない 優しい ピアノ 物語調" onclick="playTrack('taketa')">禁断の果実
- <span class="playing-animation"></span>    
-     <span class="duration"></span>
-    <audio id="taketa" src="music/taketa.mp3"></audio>
-  </div>
-
-  <div class="track" data-tags="ジングル 優しい 和風" onclick="playTrack('wafu_yuttari')">晴る風
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="wafu_yuttari" src="music/wafu_yuttari.mp3"></audio>
-  </div>
-
-    <div class="track" data-tags="ジングル 明るい 楽しい 可愛い ピアノ ポップ リラックス" onclick="playTrack('My Fleek Day')">My Fleek Day
-     <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="My Fleek Day" src="music/My Fleek Day.mp3"></audio>
-  </div>
-  
- <div class="track" data-tags="楽しい カッコいい 明るい ジングル" onclick="playTrack('kaijo')">ブルーパンサー
- <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="kaijo" src="music/kaijo.mp3"></audio>
-  </div>  
-
-    <div class="track" data-tags="ジングル 明るい 優しい 可愛い ピアノ 和風" onclick="playTrack('yuiri')">ころりんキャッチ
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="yuiri" src="music/yuiri.mp3"></audio>
-  </div>
-
-    <div class="track" data-tags="ジングル 明るい 優しい 可愛い ピアノ 楽しい" onclick="playTrack('nono')">Rizzy Me!
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="nono" src="music/nono.mp3"></audio>
-  </div>
-
-    <div class="track" data-tags="ジングル 不穏 優しい 切ない ピアノ アンニュイ 不思議" onclick="playTrack('meio')">皇の休日
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="meio" src="music/meio.mp3"></audio>
-  </div>
-  
-    <div class="track" data-tags="BGM 幻想的 可愛い 優しい 切ない リラックス" onclick="playTrack('ra-na1')">Aether
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="ra-na1" src="music/ra-na1.mp3"></audio>
-  </div>
-
-    <div class="track" data-tags="BGM 明るい 優しい 楽しい ピアノ ポップ 可愛い 自然" onclick="playTrack('ra-na2')">COTTONTAIL
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="ra-na2" src="music/ra-na2.mp3"></audio>
-  </div>  
-
-      <div class="track" data-tags="BGM 明るい 優しい 楽しい ピアノ ポップ 可愛い 自然" onclick="playTrack('memememe_1')">SETTING…
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="memememe_1" src="music/memememe_1.mp3"></audio>
-  </div>  
-
-    <div class="track" data-tags="BGM 明るい 優しい 楽しい ピアノ ポップ 可愛い 自然" onclick="playTrack('memememe_2')">BOOTING!!
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="memememe_2" src="music/memememe_2.mp3"></audio>
-  </div>  
-
-      <div class="track" data-tags="BGM 明るい 優しい 楽しい ピアノ ポップ 可愛い" onclick="playTrack('somari1')">ひだまり喫茶
-         <br>        
-        きゃんべる
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="somari1" src="music/somari1.mp3"></audio>
-  </div>  
-
-    <div class="track" data-tags="BGM 明るい 楽しい ピアノ ポップ 可愛い" onclick="playTrack('somari2')">今日も喫茶店は
-       <br>
-      大忙しなのだ！
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="somari2" src="music/somari2.mp3"></audio>
-  </div>  
-    
-  
-<div class="track" data-tags="BGM 切ない カッコいい ピアノ 不穏 幻想的 アンニュイ 物語調 自然" onclick="playTrack('arajiru')">再開と終焉
-   <span class="playing-animation"></span>
-   <span class="duration"></span>
-   <audio id="arajiru" src="music/arajiru.mp3"></audio>
-</div>
-
-<div class="track" data-tags="BGM  明るい 切ない カッコいい 不穏 楽しい アンニュイ 物語調" onclick="playTrack('arajiru_kaito')">Catch Me If You Dare
-   <span class="playing-animation"></span>
-   <span class="duration"></span>
-   <audio id="arajiru_kaito" src="music/arajiru_kaito.mp3"></audio>
-</div>
-
-  <div class="track" data-tags="BGM カッコいい 不穏 幻想的 不思議 アンニュイ 物語調 " onclick="playTrack('arajiru_huon')">骸
-   <span class="playing-animation"></span>
-   <span class="duration"></span>
-   <audio id="arajiru_huon" src="music/arajiru_huon.mp3"></audio>
-</div>
-
-  
-  <div class="track" data-tags="BGM 明るい 楽しい 可愛い ポップ" onclick="playTrack('27')">ポッピンラビッツ
-      <span class="duration"></span>
-      <span class="playing-animation"></span>
-      <audio id="27" src="music/27.mp3"></audio>
-  </div>
-
- <div class="track" data-tags="明るい 楽しい ポップ 和風 BGM リラックス" onclick="playTrack('miyabi')">なごみ
-    <br>
-    フューチャー
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="miyabi" src="music/miyabi.mp3"></audio>
-  </div>
-  
-  <div class="track" data-tags="BGM 楽しい ポップ 和風 不穏" onclick="playTrack('yoreisai')">和風ハロウィン
-     <br>
-    BGM
-     <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="yoreisai" src="music/yoreisai.mp3"></audio>
-  </div>
-
-      <div class="track" data-tags="BGM 楽曲 可愛い 優しい 明るい 優しい 楽しい ピアノ ポップ リラックス" onclick="playTrack('osanpo')">おさんぽ日和
- <span class="playing-animation"></span>
- <span class="duration"></span>        
-    <audio id="osanpo" src="music/osanpo.mp3"></audio>
-  </div>
-  
-  <div class="track" data-tags="楽曲 明るい 優しい 楽しい 可愛い ピアノ ポップ 物語調 リラックス" onclick="playTrack('sister_off')">シスターエール（off）
-     <span class="playing-animation"></span>
- <span class="duration"></span>    
-    <audio id="sister_off" src="music/sister_off.mp3"></audio>
-  </div>
-  
-  <div class="track" data-tags="楽曲 明るい 楽しい 可愛い ポップ" onclick="playTrack('cheese2025')">cheese
-  
- <span class="playing-animation"></span>    
- <span class="duration"></span>    
-    <audio id="cheese2025" src="music/cheese2025.mp3"></audio>
-  </div>
-
-    <div class="track" data-tags="楽曲 明るい 優しい 楽しい ピアノ ポップ 可愛い" onclick="playTrack('kampana')">campana
-    
-       <span class="playing-animation"></span>
- <span class="duration"></span>      
-      <audio id="kampana" src="music/kampana.mp3"></audio>
-  </div>
-
-  
-<div class="link-buttons">
-  <a href="https://tsunagu.cloud/users/nar8ran" target="_blank" class="commission">コミッションはこちら</a>
-  <a href="https://lit.link/nar8ran" target="_blank" class="main-site">メインサイトはこちら</a>
-</div>
-
-  <footer>
-    © 2025 Naro studio. All rights reserved.
-  </footer>
-
-<script>
- const selectedTags = [];
-  let currentAudio = null;
-  let currentTrackDiv = null;
-
-  function playTrack(id) {
-    const audio = document.getElementById(id);
-    const trackDiv = audio.parentElement;
-    const anim = trackDiv.querySelector('.playing-animation');
-
-    if (currentAudio === audio) {
-      if (!audio.paused) {
-        audio.pause();
-        audio.currentTime = 0;
-        trackDiv.classList.remove('playing');
-        if (anim) anim.style.display = 'none';
-        currentAudio = null;
-        currentTrackDiv = null;
-      } else {
-        audio.play();
-        trackDiv.classList.add('playing');
-        if (anim) anim.style.display = 'inline-block';
-        currentAudio = audio;
-        currentTrackDiv = trackDiv;
-      }
-    } else {
-      if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        if (currentTrackDiv) {
-          currentTrackDiv.classList.remove('playing');
-          const prevAnim = currentTrackDiv.querySelector('.playing-animation');
-          if (prevAnim) prevAnim.style.display = 'none';
-        }
-      }
-      audio.play();
-      trackDiv.classList.add('playing');
-      if (anim) anim.style.display = 'inline-block';
-      currentAudio = audio;
-      currentTrackDiv = trackDiv;
-    }
-  }
-
-  function toggleTag(btn) {
-    const tag = btn.textContent;
-    if (btn.classList.contains('active')) {
-      btn.classList.remove('active');
-      const index = selectedTags.indexOf(tag);
-      if (index > -1) selectedTags.splice(index, 1);
-    } else {
-      btn.classList.add('active');
-      selectedTags.push(tag);
-    }
-    filterTracks();
-  }
-
-  function filterTracks() {
-    const tracks = document.getElementsByClassName('track');
-    for (let i = 0; i < tracks.length; i++) {
-      const tags = tracks[i].getAttribute('data-tags').split(' ');
-      const hasAll = selectedTags.every(t => tags.includes(t));
-      tracks[i].style.display = hasAll || selectedTags.length === 0 ? '' : 'none';
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const tracks = document.querySelectorAll('.track');
-    tracks.forEach(track => {
-      const audio = track.querySelector('audio');
-      const durationSpan = track.querySelector('.duration');
-
-      audio.addEventListener('loadedmetadata', () => {
-        const duration = audio.duration;
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60).toString().padStart(2, '0');
-        durationSpan.textContent = `${minutes}:${seconds}`;
-      });
-    });
-  });
-</script>
 </body>
 </html>
+
