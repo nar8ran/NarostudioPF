@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- TODO: サイト名・説明を差し替え -->
+    <title>Your Name — Portfolio</title>
+    <meta
+      name="description"
+      content="一次創作とVTuber向けの創作活動をしているクリエイターのポートフォリオサイトです。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="home bg-paper">
+      <!-- ============ ヒーロー（動画・ランダム切り替え） ============ -->
+      <!-- 動画を増やす/変えるときは <video class="hero__slide"> を増減し、
+           src を movie/ 内のファイル名に。muted playsinline は自動再生に必要です。
+           （音を鳴らす自動再生はブラウザ側で禁止されているため muted 必須） -->
+      <section class="hero" id="hero">
+        <video
+          class="hero__slide is-active"
+          src="movie/L2DIdol.mp4"
+          autoplay
+          muted
+          playsinline
+          preload="auto"
+        ></video>
+        <video
+          class="hero__slide"
+          src="movie/L2Dkemo.mp4"
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
+      </section>
+
+      <!-- ============ 右サイドのナビ ============ -->
+      <aside class="home-side">
+        <div class="home-brand">
+          <a href="index.html">
+            <!-- TODO: お名前・肩書き -->
+            <div class="home-brand__name">Your Name</div>
+            <div class="home-brand__role">Creator / Illustrator</div>
+          </a>
+        </div>
+
+        <nav class="home-nav">
+          <a href="about.html">About</a>
+          <a href="works.html">Works</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="home-links">
+          <div class="home-links__label">Links</div>
+          <!-- TODO: href を実際のURLに。使わないリンクは行ごと削除してください -->
+          <nav class="home-links__list">
+            <a href="#" target="_blank" rel="noreferrer">Commission</a>
+            <a href="#" target="_blank" rel="noreferrer">Link</a>
+            <a href="#" target="_blank" rel="noreferrer">X</a>
+          </nav>
+        </div>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

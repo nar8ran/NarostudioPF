@@ -1,0 +1,148 @@
+/* =================================================================
+ *  Portfolio — フロントのちょっとした動き（ビルド不要のプレーンJS）
+ *  各ページに共通で読み込まれ、必要な部分だけ動きます。
+ * ================================================================= */
+(() => {
+  "use strict";
+
+  /* ---- フッターの年号を自動更新 ---- */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+  /* ---- トップ：ヒーローのランダム切り替え ---- */
+  const hero = document.getElementById("hero");
+  if (hero) {
+    const slides = Array.from(hero.querySelectorAll(".hero__slide"));
+
+    if (slides.length > 0) {
+      const isVideo = slides[0].tagName === "VIDEO";
+      let current = Math.floor(Math.random() * slides.length);
+      slides.forEach((s, i) => s.classList.toggle("is-active", i === current));
+
+      // 別のスライドをランダムに選ぶ
+      const pickNext = () => {
+        if (slides.length < 2) return current;
+        let n = Math.floor(Math.random() * (slides.length - 1));
+        if (n >= current) n += 1;
+        return n;
+      };
+
+      if (isVideo) {
+        const playCurrent = () => {
+          const v = slides[current];
+          try {
+            v.currentTime = 0;
+          } catch (e) {}
+          const p = v.play();
+          if (p && p.catch) p.catch(() => {});
+        };
+
+        if (slides.length === 1) {
+          slides[0].loop = true; // 1本だけならループ
+          playCurrent();
+        } else {
+          // 再生が終わったら、別の動画へランダムに切り替え
+          slides.forEach((v) => {
+            v.loop = false;
+            v.addEventListener("ended", () => {
+              const next = pickNext();
+              slides[current].classList.remove("is-active");
+              slides[current].pause();
+              current = next;
+              slides[current].classList.add("is-active");
+              playCurrent();
+            });
+          });
+          playCurrent();
+        }
+      } else {
+        // 動画でない場合（グラデーション等）はタイマーで切り替え
+        setInterval(() => {
+          const next = pickNext();
+          slides[current].classList.remove("is-active");
+          slides[next].classList.add("is-active");
+          current = next;
+        }, 4500);
+      }
+    }
+  }
+
+  /* ---- Works：カテゴリ絞り込み ---- */
+  const tabs = document.getElementById("tabs");
+  const grid = document.getElementById("works-grid");
+  if (tabs && grid) {
+    const cards = Array.from(grid.querySelectorAll(".card"));
+    const empty = document.getElementById("works-empty");
+
+    tabs.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tab");
+      if (!btn) return;
+
+      const filter = btn.dataset.filter;
+      tabs
+        .querySelectorAll(".tab")
+        .forEach((t) => t.classList.toggle("active", t === btn));
+
+      let shown = 0;
+      cards.forEach((card) => {
+        const match = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("is-hidden", !match);
+        if (match) shown += 1;
+      });
+      if (empty) empty.classList.toggle("is-hidden", shown > 0);
+    });
+  }
+
+  /* ---- Contact：簡易バリデーション ---- */
+  const form = document.getElementById("contact-form");
+  if (form) {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const setError = (name, msg) => {
+      const p = form.querySelector(`[data-error-for="${name}"]`);
+      const input = form.querySelector(`#${name}`);
+      if (p) {
+        p.textContent = msg;
+        p.classList.toggle("is-hidden", !msg);
+      }
+      if (input) input.style.borderColor = msg ? "var(--blush-deep)" : "";
+    };
+
+    form.addEventListener("submit", (e) => {
+      const usingService = form.getAttribute("action"); // Formspree等を設定済みか
+      const data = new FormData(form);
+      const name = (data.get("name") || "").toString().trim();
+      const email = (data.get("email") || "").toString().trim();
+      const message = (data.get("message") || "").toString().trim();
+
+      let ok = true;
+      setError("name", name ? "" : "お名前をご入力ください");
+      if (!name) ok = false;
+      setError("email", emailRe.test(email) ? "" : "メールアドレスの形式をご確認ください");
+      if (!emailRe.test(email)) ok = false;
+      setError("message", message ? "" : "お問い合わせ内容をご入力ください");
+      if (!message) ok = false;
+
+      const banner = document.getElementById("form-error");
+
+      if (!ok) {
+        e.preventDefault();
+        if (banner) banner.classList.remove("is-hidden");
+        return;
+      }
+      if (banner) banner.classList.add("is-hidden");
+
+      // Formspree等（action属性）が設定されていれば、通常どおり送信させる
+      if (usingService) return;
+
+      // 未設定のときは、その場で完了メッセージを表示（実際の送信はされません）
+      e.preventDefault();
+      form.classList.add("is-hidden");
+      const thanks = document.getElementById("thanks");
+      if (thanks) {
+        thanks.classList.remove("is-hidden");
+        thanks.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+  }
+})();

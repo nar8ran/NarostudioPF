@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Works — Your Name</title>
+    <meta name="description" content="これまでの制作実績。オリジナル / VTuber / その他。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="index.html" class="brand">Your Name</a>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="works.html" class="active">Works</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-head rise">
+        <h1>Works</h1>
+        <div class="page-head__sub">
+          <p>今までの制作物。公開可能のもののみ掲載しております。</p>
+          <p><span>Past works. Only publicly available pieces are listed here.</span></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem">
+        <!-- カテゴリ切り替え（JSで絞り込み） -->
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-filter="all">All</button>
+          <button class="tab" data-filter="original">Original</button>
+          <button class="tab" data-filter="vtuber">VTuber</button>
+          <button class="tab" data-filter="other">Other Works</button>
+        </div>
+
+        <!--
+          作品を追加するときは、この <article class="card"> … </article> を複製して
+          data-category を "original" / "vtuber" / "other" のいずれかにしてください。
+          画像は <div class="card__media"> の中身を
+          <img src="images/xxx.jpg" alt="作品名" /> に置き換えればOKです。
+        -->
+        <div class="grid-3" id="works-grid">
+          <article class="card" data-category="original">
+            <div class="card__media">
+              <div class="ph ph--sage"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">オリジナルキャラクターデザイン</p>
+              <span class="card__cat">Original</span>
+            </div>
+          </article>
+          <article class="card" data-category="original">
+            <div class="card__media">
+              <div class="ph ph--sage"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">ジャケットイラスト</p>
+              <span class="card__cat">Original</span>
+            </div>
+          </article>
+          <article class="card" data-category="original">
+            <div class="card__media">
+              <div class="ph ph--sage"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">世界観・設定画</p>
+              <span class="card__cat">Original</span>
+            </div>
+          </article>
+
+          <article class="card" data-category="vtuber">
+            <div class="card__media">
+              <div class="ph ph--blush"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">Live2D モデル制作</p>
+              <span class="card__cat">VTuber</span>
+            </div>
+          </article>
+          <article class="card" data-category="vtuber">
+            <div class="card__media">
+              <div class="ph ph--blush"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">配信オーバーレイ一式</p>
+              <span class="card__cat">VTuber</span>
+            </div>
+          </article>
+          <article class="card" data-category="vtuber">
+            <div class="card__media">
+              <div class="ph ph--blush"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">エモート / スタンプ</p>
+              <span class="card__cat">VTuber</span>
+            </div>
+          </article>
+
+          <article class="card" data-category="other">
+            <div class="card__media">
+              <div class="ph ph--mixed"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">ロゴ・ロゴアニメーション</p>
+              <span class="card__cat">Other</span>
+            </div>
+          </article>
+          <article class="card" data-category="other">
+            <div class="card__media">
+              <div class="ph ph--mixed"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">MV・動画制作</p>
+              <span class="card__cat">Other</span>
+            </div>
+          </article>
+          <article class="card" data-category="other">
+            <div class="card__media">
+              <div class="ph ph--mixed"><span class="ph__label">Sample</span></div>
+            </div>
+            <div class="card__meta">
+              <p class="card__title">グッズイラスト</p>
+              <span class="card__cat">Other</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="empty is-hidden" id="works-empty">
+          このカテゴリの作品はまだありません。
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__name">Your Name</p>
+          <p class="site-footer__role">Creator / Illustrator</p>
+        </div>
+        <div class="site-footer__links">
+          <nav class="social-nav">
+            <a href="#" target="_blank" rel="noreferrer">Commission</a>
+            <a href="#" target="_blank" rel="noreferrer">Link</a>
+            <a href="#" target="_blank" rel="noreferrer">X</a>
+          </nav>
+          <p class="copyright">© <span id="year">2026</span> Your Name</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

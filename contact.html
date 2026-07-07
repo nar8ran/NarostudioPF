@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact — Your Name</title>
+    <meta name="description" content="お仕事のご依頼・ご相談はこちらから。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="index.html" class="brand">Your Name</a>
+        <nav class="site-nav">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="works.html">Works</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page">
+      <div class="page-head rise">
+        <h1>Contact</h1>
+        <div class="page-head__sub">
+          <p>お仕事のご依頼、ご相談を募集しております。</p>
+          <p><span>Open for work inquiries and collaborations.</span></p>
+        </div>
+      </div>
+
+      <!--
+        ▼ 実際にメールを受け取る方法（どちらか）
+        1) フォームサービス「Formspree」を使う（おすすめ・無料枠あり）
+           → <form> タグを次のように変更してください：
+             <form class="form" id="contact-form"
+                   action="https://formspree.io/f/【あなたのID】" method="POST">
+             （この場合、送信は Formspree 経由で実際にメールが届きます）
+        2) メールソフトを起動する mailto を使う
+           → 送信ボタンのリンク先を mailto:you@example.com にする 等
+        ※ 今はJSで簡易バリデーション＋完了メッセージのみ表示します（送信はされません）。
+      -->
+      <form class="form" id="contact-form" novalidate>
+        <div class="banner banner--error is-hidden" id="form-error">
+          入力内容をご確認ください。
+        </div>
+
+        <div class="field-row">
+          <label for="name">お名前（HN）<span class="req">*</span></label>
+          <div>
+            <input class="field" id="name" name="name" type="text" placeholder="Your Name..." />
+            <p class="field-error is-hidden" data-error-for="name"></p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="email">メールアドレス<span class="req">*</span></label>
+          <div>
+            <input class="field" id="email" name="email" type="email" placeholder="your@email.com" />
+            <p class="field-error is-hidden" data-error-for="email"></p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="company">会社名</label>
+          <div>
+            <input class="field" id="company" name="company" type="text" placeholder="Company Name..." />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="budget">ご予算 / 原稿料</label>
+          <div>
+            <input class="field" id="budget" name="budget" type="text" placeholder="例）〜50,000円 / 応相談" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="deadline">納品ご希望日</label>
+          <div>
+            <input class="field" id="deadline" name="deadline" type="date" style="color: var(--ink-soft)" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="publish">実績公開可否</label>
+          <div>
+            <select class="field" id="publish" name="publish">
+              <option value="応相談">応相談</option>
+              <option value="公開可">公開可</option>
+              <option value="非公開">非公開希望</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="message">お問い合わせ内容<span class="req">*</span></label>
+          <div>
+            <textarea class="field" id="message" name="message" rows="5" placeholder="ご依頼・ご相談の内容をご記入ください。"></textarea>
+            <p class="field-error is-hidden" data-error-for="message"></p>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="files">添付資料</label>
+          <div>
+            <input class="field-file" id="files" name="files" type="file" multiple />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label for="notes">その他ご質問 / 備考欄</label>
+          <div>
+            <textarea class="field" id="notes" name="notes" rows="3" placeholder="任意でご記入ください。"></textarea>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <span></span>
+          <button class="btn" type="submit">送信 / Send</button>
+        </div>
+      </form>
+
+      <!-- 送信完了メッセージ -->
+      <div class="thanks is-hidden rise" id="thanks">
+        <h2>Thank you!</h2>
+        <p>
+          送信しました。お問い合わせいただきありがとうございます！<br />
+          内容を確認のうえ、追ってご連絡いたします。
+        </p>
+      </div>
+
+      <!-- ============ 横長イラスト ============ -->
+      <div class="illust-wide">
+        <!-- TODO: 横長イラストに差し替え →
+             <img src="images/contact.jpg" alt="" class="round-xl" /> -->
+        <div class="ph ph--mixed ph--wide round-xl">
+          <span class="ph__label">横長イラストを置く</span>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__name">Your Name</p>
+          <p class="site-footer__role">Creator / Illustrator</p>
+        </div>
+        <div class="site-footer__links">
+          <nav class="social-nav">
+            <a href="#" target="_blank" rel="noreferrer">Commission</a>
+            <a href="#" target="_blank" rel="noreferrer">Link</a>
+            <a href="#" target="_blank" rel="noreferrer">X</a>
+          </nav>
+          <p class="copyright">© <span id="year">2026</span> Your Name</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
