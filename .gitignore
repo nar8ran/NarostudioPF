@@ -13,3 +13,6 @@ source/
 movie/*
 !movie/L2D*.mp4
 !movie/ANI*.mp4
+
+# 別プロジェクト（このポートフォリオには含めない）
+cyber-nurse/
