@@ -145,4 +145,74 @@
       }
     });
   }
+
+  /* ---- Works：動画カード（ホバーで再生 / クリックで拡大） ---- */
+  const cardVideos = document.querySelectorAll(".card__media video");
+  if (cardVideos.length) {
+    const modal = document.getElementById("video-modal");
+    const modalVideo = document.getElementById("modal-video");
+    const modalClose = document.getElementById("modal-close");
+
+    const closeModal = () => {
+      if (!modal || !modalVideo) return;
+      // ふわっと消してから隠す
+      modal.classList.remove("is-open");
+      document.body.style.overflow = "";
+      window.setTimeout(() => {
+        modal.hidden = true;
+        modalVideo.pause();
+        modalVideo.removeAttribute("src");
+        modalVideo.load();
+      }, 500);
+    };
+
+    cardVideos.forEach((video) => {
+      const media = video.closest(".card__media");
+      if (!media) return;
+      media.classList.add("has-video");
+
+      // 最初のフレームをサムネイル代わりに表示
+      video.addEventListener("loadedmetadata", () => {
+        try {
+          video.currentTime = 0.05;
+        } catch (e) {}
+      });
+
+      // マウスを乗せたら再生、離れたら停止
+      media.addEventListener("mouseenter", () => {
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
+      });
+      media.addEventListener("mouseleave", () => {
+        video.pause();
+        try {
+          video.currentTime = 0.05;
+        } catch (e) {}
+      });
+
+      // クリックで拡大（操作ボタン付きモーダル・ふわっと表示）
+      media.addEventListener("click", () => {
+        if (!modal || !modalVideo) return;
+        modalVideo.src = video.currentSrc || video.src;
+        modal.hidden = false;
+        document.body.style.overflow = "hidden";
+        // 次のフレームで .is-open を付けてフェードイン
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => modal.classList.add("is-open"));
+        });
+        const p = modalVideo.play();
+        if (p && p.catch) p.catch(() => {});
+      });
+    });
+
+    if (modalClose) modalClose.addEventListener("click", closeModal);
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  }
 })();

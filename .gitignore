@@ -9,7 +9,7 @@
 audio/
 source/
 
-# 動画は使用中の2本だけ含める（残りは後日、圧縮してから追加する）
+# 動画は Live2D(L2D) と ANI のものを公開対象にする（それ以外は圧縮後に追加）
 movie/*
-!movie/L2DIdol.mp4
-!movie/L2Dkemo.mp4
+!movie/L2D*.mp4
+!movie/ANI*.mp4
